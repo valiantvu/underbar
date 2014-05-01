@@ -194,9 +194,8 @@ var _ = {};
           result.push(functionOrKey.apply(collection[key],args));
         }
         else{
-          result.push(collection[key].functionOrKey(args));
+          result.push(collection[key][functionOrKey].apply(collection[key], args));
         }
-
       }
 
       return result;
