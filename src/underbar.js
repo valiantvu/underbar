@@ -114,6 +114,17 @@ var _ = {};
   _.reject = function(collection, test) {
     // TIP: see if you can re-use _.filter() here, without simply
     // copying code in and modifying it
+
+    var passes = _.filter(collection, test);
+    var result = [];
+
+    for (var i = 0; i < collection.length; i++){
+      if (_.indexOf(passes, collection[i]) == -1){
+          result.push(collection[i]);
+      }
+    }
+
+    return result;
   };
 
   // Produce a duplicate-free version of the array.
