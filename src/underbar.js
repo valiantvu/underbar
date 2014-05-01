@@ -215,6 +215,14 @@ var _ = {};
   //     return total + number;
   //   }, 0); // should be 6
   _.reduce = function(collection, iterator, accumulator) {
+
+      var previousValue = accumulator === undefined ? collection[0] : accumulator;
+
+      for (var key in collection){
+        previousValue = iterator(previousValue, collection[key]);
+      }
+
+      return previousValue;
   };
 
   // Determine if the array or object contains a given value (using `===`).
