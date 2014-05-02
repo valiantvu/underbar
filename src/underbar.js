@@ -253,6 +253,16 @@ var _ = {};
   // provided, provide a default one
   _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
+    // return _.every(collection, function(previousValue, item){
+    //   return !iterator(previousValue, item);
+    // });
+    return _.reduce(collection, function(wasMatched, item) {
+      if (wasMatched){
+        return true;
+      }
+      return Boolean(iterator === undefined ? item : iterator(item));
+    }, false);
+
   };
 
 
