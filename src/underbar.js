@@ -262,7 +262,6 @@ var _ = {};
       }
       return Boolean(iterator === undefined ? item : iterator(item));
     }, false);
-
   };
 
 
@@ -285,6 +284,13 @@ var _ = {};
   //     bla: "even more stuff"
   //   }); // obj1 now contains key1, key2, key3 and bla
   _.extend = function(obj) {
+
+    for (var i = 1; i < arguments.length; i++){
+      for (var key in arguments[i]){
+        arguments[0][key] = arguments[i][key]; 
+      }
+    }
+    return arguments[0];
   };
 
   // Like extend, but doesn't ever overwrite a key that already
