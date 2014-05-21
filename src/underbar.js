@@ -101,11 +101,17 @@ var _ = {};
       
       var result = [];
 
-      for(var i = 0; i < collection.length; i++){
-        if (test(collection[i])){ 
-          result.push(collection[i]); 
+      _.each(collection, function(item, index) {
+        if (test(item)) {
+          result.push(item);
         }
-      }
+      })
+
+      // for(var i = 0; i < collection.length; i++){
+      //   if (test(collection[i])){ 
+      //     result.push(collection[i]); 
+      //   }
+      // }
 
       return result;
   };
