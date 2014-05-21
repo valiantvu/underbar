@@ -124,11 +124,17 @@ var _ = {};
     var passes = _.filter(collection, test);
     var result = [];
 
-    for (var i = 0; i < collection.length; i++){
-      if (_.indexOf(passes, collection[i]) == -1){
-          result.push(collection[i]);
+    _.each(collection, function(item, index) {
+      if (_.indexOf(passes, item) == -1){
+          result.push(item);
       }
-    }
+    });
+    
+    // for (var i = 0; i < collection.length; i++){
+    //   if (_.indexOf(passes, collection[i]) == -1){
+    //       result.push(collection[i]);
+    //   }
+    // }
 
     return result;
   };
