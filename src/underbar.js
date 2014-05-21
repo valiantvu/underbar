@@ -107,12 +107,6 @@ var _ = {};
         }
       })
 
-      // for(var i = 0; i < collection.length; i++){
-      //   if (test(collection[i])){ 
-      //     result.push(collection[i]); 
-      //   }
-      // }
-
       return result;
   };
 
@@ -130,12 +124,6 @@ var _ = {};
       }
     });
 
-    // for (var i = 0; i < collection.length; i++){
-    //   if (_.indexOf(passes, collection[i]) == -1){
-    //       result.push(collection[i]);
-    //   }
-    // }
-
     return result;
   };
 
@@ -149,12 +137,6 @@ var _ = {};
         result.push(item);
       }
     })
-
-    // for (var i = 0; i < array.length; i++){
-    //   if (_.indexOf(result, array[i]) == -1){
-    //     result.push(array[i]);
-    //   }
-    // }
 
     return result;
   };
@@ -203,20 +185,43 @@ var _ = {};
   // Calls the method named by methodName on each value in the list.
   // Note: you will nead to learn a bit about .apply to complete this.
   _.invoke = function(collection, functionOrKey, args) {
+    // if (typeof functionOrKey == 'function'){
+    //   return _.map(collection, function(item) {
+    //     return functionOrKey.apply(item, args);
+    //   });
+    // }else{
+    //   return _.map(collection, function(item) {
+    //     return item[functionOrKey].apply(item, args);
+    //   });
+    // }
+    
+    var iterator;
 
-      var result = [];
+    if (typeof functionOrKey == 'function'){
+      iterator = function(item) {
+        return functionOrKey.apply(item, args);
+      };
+    }else{
+      iterator = function(item) {
+        return item[functionOrKey].apply(item, args);
+      };
+    }
 
-      for (var key in collection){
+    return _.map(collection, iterator);    
 
-        if (typeof functionOrKey == 'function'){
-          result.push(functionOrKey.apply(collection[key],args));
-        }
-        else{
-          result.push(collection[key][functionOrKey].apply(collection[key], args));
-        }
-      }
+    // var result = [];
 
-      return result;
+    // for (var key in collection){
+
+    //   if (typeof functionOrKey == 'function'){
+    //     result.push(functionOrKey.apply(collection[key],args));
+    //   }
+    //   else{
+    //     result.push(collection[key][functionOrKey].apply(collection[key], args));
+    //   }
+    // }
+
+    // return result;
   };
 
   // Reduces an array or object to a single value by repetitively calling
